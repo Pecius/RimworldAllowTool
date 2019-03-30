@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
+using UnofficialMultiplayerAPI;
+using System;
 
 namespace AllowTool {
 	
@@ -12,6 +14,27 @@ namespace AllowTool {
 		internal readonly ThingDesignatorDef def;
 		protected int numThingsDesignated;
 		protected bool inheritIcon;
+
+		[Syncer(isImplicit = true, shouldConstruct = false)]
+		static bool Syncer(SyncWorker sync, ref Designator inst)
+		{
+			Type tp = inst?.GetType();
+			sync.BindType<Designator>(ref tp);
+
+			if(typeof(Designator_SelectableThings).IsAssignableFrom(tp))
+			{
+				var des = (Designator_SelectableThings)inst;
+				ThingDesignatorDef def = des?.def;
+				sync.Bind(ref def);
+
+				if (!sync.isWriting)
+					inst = (Designator)Activator.CreateInstance(tp, def);
+
+				return true;
+			}
+
+			return false;
+		}
 
 		private Designator _replacedDesignator;
 		public Designator ReplacedDesignator {

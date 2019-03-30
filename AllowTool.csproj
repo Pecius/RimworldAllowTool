@@ -38,6 +38,10 @@
       <HintPath>..\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="0UnofficialMultiplayerAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Mods\AllowTool\Assemblies\0UnofficialMultiplayerAPI.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>

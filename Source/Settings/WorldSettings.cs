@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using HugsLib.Utils;
 using Verse;
+using UnofficialMultiplayerAPI;
 
 namespace AllowTool.Settings {
 	/// <summary>
@@ -21,6 +22,7 @@ namespace AllowTool.Settings {
 			return partyHuntingPawns.Contains(pawn.thingIDNumber);
 		}
 
+		[SyncMethod]
 		public void TogglePawnPartyHunting(Pawn pawn, bool enable) {
 			var id = pawn.thingIDNumber;
 			if (enable) {
